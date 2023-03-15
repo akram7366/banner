@@ -22,7 +22,6 @@ class _MyBannerState extends State<MyBanner> with RouteAware {
     bannerAd = await MyAds.get.loadBanner(context, (ad) => setState(() {}));
   }
 
-
   @override
   void didPushNext() => setState(() => visible = false);
 
@@ -31,7 +30,7 @@ class _MyBannerState extends State<MyBanner> with RouteAware {
 
   @override
   void dispose() {
-    bannerAd!.dispose();
+    bannerAd?.dispose();
     MyAds.get.routeObserver.unsubscribe(this);
     super.dispose();
   }
@@ -40,8 +39,8 @@ class _MyBannerState extends State<MyBanner> with RouteAware {
   Widget build(BuildContext context) {
     return bannerAd != null
         ? SizedBox(
-            width: bannerAd!.size.width.toDouble(),
-            height: bannerAd!.size.height.toDouble(),
+            width: bannerAd?.size.width.toDouble(),
+            height: bannerAd?.size.height.toDouble(),
             child: Visibility(
               visible: visible,
               child: AdWidget(ad: bannerAd!),
