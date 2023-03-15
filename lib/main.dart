@@ -1,8 +1,7 @@
+import 'package:banner/ads.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'banner.dart';
-
-final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      navigatorObservers: [routeObserver],
+      navigatorObservers: [MyAds.get.routeObserver],
       home: const MyPage(),
     );
   }
@@ -36,11 +35,12 @@ class MyPage extends StatelessWidget {
         title: const Text('Banner'),
       ),
       body: Center(
-        child: ElevatedButton(onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyPage2()));
-        }, child: const Text('start'))
-      ),
-
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const MyPage2()));
+              },
+              child: const Text('start'))),
       bottomNavigationBar: const MyBanner(),
     );
   }
